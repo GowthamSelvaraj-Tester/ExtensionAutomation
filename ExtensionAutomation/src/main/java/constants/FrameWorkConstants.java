@@ -17,8 +17,8 @@ public class FrameWorkConstants {
 	public static final String SCREENSHOT_PATH = PROJECT_PATH + ConfigReaders.getProperty("screenShotFolderPath");
 	public static final String IMAGE_FORMAT = ConfigReaders.getProperty("fileFormat");
 	
-	public static final String EXTENT_REPORT_FOLDERPATH = PROJECT_PATH+"/ExtentReports/";
-	public static final String EXTENT_REPORT_NAME = "AutomationTestReport";
+	public static final String EXTENT_REPORT_FOLDERPATH = PROJECT_PATH+"//ExtentReports//";
+	public static final String EXTENT_REPORT_NAME = "AutomationTestReport.html";
 	
 	public static final String EXTENT_REPORT_TITLE ="Automation Test Suite Report - DMail";
 	
@@ -27,6 +27,11 @@ public class FrameWorkConstants {
 	public static final String JSON_PATH = PROJECT_PATH + ConfigReaders.getProperty("jsonFilePath");
 	
 	public static final int WAIT_EXPLICIT = Integer.parseInt(ConfigReaders.getProperty("waitTime")); 
+	
+	public static final String PASSED_STEP_SCREENSHOT = ConfigReaders.getProperty("passed_steps_screenshot");
+	public static final String FAILED_STEP_SCREENSHOT = ConfigReaders.getProperty("failed_steps_screenshot");
+	public static final String SKIPPED_STEP_SCREENSHOT = ConfigReaders.getProperty("skipped_steps_screenshot");
+	public static final String RETRY_STEP_SCREENSHOT = ConfigReaders.getProperty("retry_failed_tests");
 	
 	public static final String ICON_SMILEY_PASS = "<i class='fa fa-smile-o' style='font-size:24px'></i>";
 	public static final String ICON_SMILEY_SKIP = "<i class=\"fas fa-frown-open\"></i>";
@@ -48,6 +53,6 @@ public class FrameWorkConstants {
 	public static final String ICON_NAVIGATE_LEFT = "<i class='fa fa-arrow-circle-left' ></i>";
 	
 	public static void main(String[] args) {
-		System.out.println(SCREENSHOT_PATH);
+		System.out.println(PASSED_STEP_SCREENSHOT);
 	}
 }

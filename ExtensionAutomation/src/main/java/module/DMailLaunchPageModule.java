@@ -3,14 +3,12 @@ package module;
 import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
-import com.aventstack.extentreports.Status;
 import action.Action;
 import constants.FrameWorkConstants;
 import enums.WaitStrategy;
-import listener.Listener;
 import pageObject.DMailLaunchPageObject;
 import pageObject.MetaMaskNotificationPageObject;
+import report.ExtentLogger;
 
 public class DMailLaunchPageModule {
 	
@@ -40,15 +38,15 @@ public class DMailLaunchPageModule {
 				if(currentTitle.matches("DMail")) {
 					reuse.switchWindow(driver,currentTitle);
 					reuse.closeTabs(driver);
-					String logText = FrameWorkConstants.ICON_NAVIGATE_LEFT+ "Navigating back to : <b>" + "DMail Page";
-					Listener.extentTest.get().log(Status.INFO,logText);
+					String logText = FrameWorkConstants.ICON_NAVIGATE_LEFT+ "Navigating back to : <b>" + "DMail";
+					ExtentLogger.info(logText);
 					return;
 				}
 			}
 			
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -58,8 +56,8 @@ public class DMailLaunchPageModule {
 				reuse.switchWindow(driver,"MetaMask");
 			}
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -67,8 +65,8 @@ public class DMailLaunchPageModule {
 		try {
 			reuse.clickButton(metaMaskElement.cancelButton,WaitStrategy.CLICKABLE, "Cancel Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -76,8 +74,8 @@ public class DMailLaunchPageModule {
 		try {
 			reuse.clickButton(metaMaskElement.nextButton,WaitStrategy.CLICKABLE, "Next Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -85,8 +83,8 @@ public class DMailLaunchPageModule {
 		try {
 			reuse.clickButton(metaMaskElement.confirmButton,WaitStrategy.CLICKABLE,"Confirm Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -94,8 +92,8 @@ public class DMailLaunchPageModule {
 		try {
 			reuse.clickButton(element.metaMaskIcon,WaitStrategy.CLICKABLE,"MetaMask Icon");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -112,8 +110,8 @@ public class DMailLaunchPageModule {
 			}
 			return false;
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 			return false;
 		}
 	}
@@ -121,10 +119,9 @@ public class DMailLaunchPageModule {
 	public void acceptAlert() {
 		try {
 			reuse.handleAlert(driver);
-			Listener.extentTest.get().log(Status.INFO,"Alert Pop-up dismissed.");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 }

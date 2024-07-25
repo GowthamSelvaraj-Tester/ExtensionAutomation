@@ -2,10 +2,9 @@ package script;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-
 import constants.FrameWorkConstants;
-import listener.Listener;
 import module.MetaMaskPageModule;
+import report.ExtentLogger;
 
 public class MetaMaskExtensionPageScript {
 	
@@ -42,8 +41,8 @@ public class MetaMaskExtensionPageScript {
 			module.saveButton();
 			module.switchNetwork();
 		} catch (Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	

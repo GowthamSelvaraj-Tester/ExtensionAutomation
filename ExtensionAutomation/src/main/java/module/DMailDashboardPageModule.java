@@ -2,18 +2,13 @@ package module;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-
-import com.aventstack.extentreports.Status;
-
 import action.Action;
 import constants.FrameWorkConstants;
 import enums.WaitStrategy;
-import listener.Listener;
 import pageObject.DMailDashboardPageObject;
+import report.ExtentLogger;
 
 public class DMailDashboardPageModule {
 	
@@ -34,12 +29,12 @@ public class DMailDashboardPageModule {
 				List<String> windowHandles = new ArrayList<>(driver.getWindowHandles());
 	            driver.switchTo().window(windowHandles.get(0));
 	            String logText = FrameWorkConstants.ICON_NAVIGATE_LEFT+ "Navigating back to : <b>" + "DMail Page </b>";
-				Listener.extentTest.get().log(Status.INFO,logText);
+				ExtentLogger.info(logText);
 	            return;
 			}
 		} catch(Exception e) {
+			ExtentLogger.fail("<b><i>" + message(e.getMessage()) + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail("<b><i>" + message(e.getMessage()) + "</i></b>");
 		}
 	}
 	
@@ -47,8 +42,8 @@ public class DMailDashboardPageModule {
 		try {
 			 return reuse.isDisplayed(element.composeButton,WaitStrategy.VISIBILITY,"Compose Button");
 		} catch(Exception e) {
+			ExtentLogger.fail("<b><i>" + message(e.getMessage()) + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail("<b><i>" + message(e.getMessage()) + "</i></b>");
 			return false;
 		}
 	}
@@ -56,12 +51,12 @@ public class DMailDashboardPageModule {
 	public void composeButton() {
 		try {
 			if(isComposeButtonDisplayed()) {
-				WebElement elements = (WebElement) element.composeButton;
-				Listener.extentTest.get().log(Status.INFO,"Text Displayed on the Button: "+ elements.getText());
+				ExtentLogger.pass("Button is Displayed", true);
+				reuse.getText(element.composeButton,WaitStrategy.VISIBILITY);
 			}
 		} catch(Exception e) {
+			ExtentLogger.fail("<b><i>" + message(e.getMessage()) + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail("<b><i>" + message(e.getMessage()) + "</i></b>");
 		}
 	}
 	

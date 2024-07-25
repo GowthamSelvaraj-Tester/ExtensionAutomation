@@ -7,8 +7,8 @@ import org.testng.Assert;
 import action.Action;
 import constants.FrameWorkConstants;
 import enums.WaitStrategy;
-import listener.Listener;
 import pageObject.MetaMaskExtensionPageObject;
+import report.ExtentLogger;
 import utility.ConfigReaders;
 import utility.ExcelUtility;
 import utility.JSONReader;
@@ -42,8 +42,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.switchWindow(driver,"MetaMask");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -52,8 +52,8 @@ public class MetaMaskPageModule {
 		try{
 			reuse.checkBox(element.TermsOfUse,WaitStrategy.CLICKABLE,"Terms of Use CheckBox");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -61,8 +61,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.ImportWallet,WaitStrategy.CLICKABLE,"Import Wallet Button");
 		}catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -71,7 +71,7 @@ public class MetaMaskPageModule {
 			reuse.checkBox(element.PrivacyPolicy,WaitStrategy.CLICKABLE,"Privacy Policy CheckBox");
 		} catch(Exception e) {
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 		}
 	}
 	
@@ -79,8 +79,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.AgreeButton,WaitStrategy.CLICKABLE,"Agree Privacy Policy Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -99,8 +99,8 @@ public class MetaMaskPageModule {
 			reuse.entertext(element.Phrase11,data.getValue("hint11"),WaitStrategy.CLICKABLE,"Recovery Phrase 11");
 			reuse.entertext(element.Phrase12,data.getValue("hint12"),WaitStrategy.CLICKABLE,"Recovery Phrase 12");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -108,8 +108,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.ConfirmPhrase,WaitStrategy.CLICKABLE,"Confirm Phrase Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -118,8 +118,8 @@ public class MetaMaskPageModule {
 			reuse.entertext(element.NewPassword,data.getValue("password"),WaitStrategy.CLICKABLE,"New Password");
 			reuse.entertext(element.ConfirmNewPassword,data.getValue("confirmPassword"),WaitStrategy.CLICKABLE,"Confirm New Password");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -127,8 +127,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.checkBox(element.AgreePasswordTerms,WaitStrategy.CLICKABLE,"Agree Password Terms Checkbox");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -136,8 +136,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.ConfirmWalletImport,WaitStrategy.CLICKABLE,"Confirm Wallet Import Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -145,8 +145,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.GotItButton,WaitStrategy.CLICKABLE,"Got It Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -154,8 +154,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.NextButton,WaitStrategy.CLICKABLE,"Next Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -163,8 +163,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.DoneButton,WaitStrategy.CLICKABLE,"Done Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -172,8 +172,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.EnableConfigurationButton,WaitStrategy.CLICKABLE,"Enable Configuration Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -181,8 +181,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.AccountMenu,WaitStrategy.CLICKABLE,"Account Menu");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -190,17 +190,17 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.Settings,WaitStrategy.CLICKABLE,"Settings");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
 	public void openNetworkSettings() {
 		try {
-			reuse.clickButton(element.NetWorkName,WaitStrategy.CLICKABLE,"Network Settings");
+			reuse.clickButton(element.Network,WaitStrategy.CLICKABLE,"Network Settings");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -208,8 +208,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.AddNetwork,WaitStrategy.CLICKABLE,"Add Network");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -217,8 +217,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.AddNetworkManually,WaitStrategy.CLICKABLE,"Add Network Manually");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -231,8 +231,8 @@ public class MetaMaskPageModule {
 			reuse.entertext(element.Currency,data.getValue("currency"),WaitStrategy.CLICKABLE,"Currency");
 			reuse.entertext(element.BlockURL,data.getValue("blockURL"),WaitStrategy.CLICKABLE,"Block URL");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -240,8 +240,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.SaveButton,WaitStrategy.CLICKABLE,"Save Button");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -249,8 +249,8 @@ public class MetaMaskPageModule {
 		try {
 			reuse.clickButton(element.SwitchButton,WaitStrategy.CLICKABLE,"Switch Network");
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>",true);
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 }

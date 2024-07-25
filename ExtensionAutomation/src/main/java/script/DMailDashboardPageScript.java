@@ -3,8 +3,8 @@ package script;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import constants.FrameWorkConstants;
-import listener.Listener;
 import module.DMailDashboardPageModule;
+import report.ExtentLogger;
 
 public class DMailDashboardPageScript {
 	
@@ -21,15 +21,8 @@ public class DMailDashboardPageScript {
 			module.swithDMailPage();
 			module.composeButton();
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 			Assert.fail();
-			Listener.extentTest.get().fail("<b><i>" + message(e.getMessage())+ "</i></b>");
 		}
-	}
-	
-	public String message(String message) {
-		 String error = "<details><summary><b><font color=red> Exception occured, click to see details: "
-				+ FrameWorkConstants.ICON_SMILEY_FAIL + " </font></b>" + "</summary>" + message.replaceAll(",", "<br>")
-				+ "</details> \n";
-		 return error;
 	}
 }

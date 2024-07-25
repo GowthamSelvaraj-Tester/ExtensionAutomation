@@ -31,6 +31,7 @@ public class ConfigReaders {
 		} catch(Exception e) {
 				e.printStackTrace();
 		}	
+		System.out.println(configValue);
 		return configValue;
 	}
 }

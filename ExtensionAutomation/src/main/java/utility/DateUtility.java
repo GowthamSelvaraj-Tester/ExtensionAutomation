@@ -1,15 +1,12 @@
 package utility;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class DateUtility {
-	public static String getStringDate(String dateFormat) {
-		//Creates a SimpleDateFormat object to define the format for date and time representation.
-		SimpleDateFormat date = new SimpleDateFormat(dateFormat);
-		//Retrieves the current date and time using the Date class.
+	public static String getStringDate() {
+		//Retrieves the current date using the Date class.
 		Date localdate = new Date();
-		//Returns the formatted date and time as a string.
-		return date.format(localdate).toString();
+		//Returns the formatted date as a string.
+		return localdate.toString().replace(":", "_").replace(" ", "_");
 	}
 }

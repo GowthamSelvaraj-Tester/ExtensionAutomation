@@ -3,8 +3,8 @@ package script;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import constants.FrameWorkConstants;
-import listener.Listener;
 import module.DMailLaunchPageModule;
+import report.ExtentLogger;
 
 public class DMailLaunchPageScript {
 	
@@ -24,8 +24,8 @@ public class DMailLaunchPageScript {
 			module.cancelButton();
 			module.acceptAlert();
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 	
@@ -36,8 +36,8 @@ public class DMailLaunchPageScript {
 			module.nextButton();
 			module.confirmButton();
 		} catch(Exception e) {
+			ExtentLogger.fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 			Assert.fail();
-			Listener.extentTest.get().fail(FrameWorkConstants.ICON_BUG + "  " + "<b><i>" + e.getSuppressed().toString() + "</i></b>");
 		}
 	}
 }

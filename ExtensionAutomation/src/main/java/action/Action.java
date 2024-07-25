@@ -10,39 +10,47 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
-import com.aventstack.extentreports.Status;
+import org.testng.Assert;
+
 import constants.FrameWorkConstants;
 import enums.WaitStrategy;
 import factories.ExplicitWaitFactory;
-import listener.Listener;
+import report.ExtentLogger;
 
 public class Action {
 	
 	public WebDriver driver;
 	public ExplicitWaitFactory wait;
+	public Actions actions;
 	
 	public Action(WebDriver driver) {
 		this.driver = driver;
+		this.actions = new Actions(driver); 
 		this.wait = new ExplicitWaitFactory();
 		PageFactory.initElements(driver,this);
 	}
 	
 	public void entertext(By by, String value, WaitStrategy waitStrategy, String elementName) {
 		try {
-			wait.performExplicitWait(waitStrategy, by).sendKeys(value);
-			Listener.extentTest.get().log(Status.INFO,"<b>" + value + "</b> is entered successfully in <b>" + elementName + "</b>");
+			WebElement element = wait.performExplicitWait(waitStrategy, by);
+	        actions.moveToElement(element).perform(); // Move to the element using Actions
+	        element.sendKeys(value); 
+			ExtentLogger.info("<b>" + value + "</b> is entered successfully in <b>" + elementName + "</b>");
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>");
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>");
 		}
 	}
 	
 	public void clickButton(By by, WaitStrategy waitStrategy, String elementName) {
 		try {
-			wait.performExplicitWait(waitStrategy, by).click();
-			Listener.extentTest.get().log(Status.INFO,"<b>"+ elementName + "</b> is clicked successfully");
+			WebElement element = wait.performExplicitWait(waitStrategy, by);
+			actions.moveToElement(element).perform();
+			element.click();
+			ExtentLogger.info("<b>"+ elementName + "</b> is clicked successfully");
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>" );
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 		}
 	}
 	
@@ -53,9 +61,9 @@ public class Action {
 			if(!element.isSelected()) {
 				element.click();
 			}
-			Listener.extentTest.get().log(Status.INFO,"<b>"+ elementName + "</b> checkbox has been selected");
+			ExtentLogger.info("<b>"+ elementName + "</b> checkbox has been selected");
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>" );
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 		}
 	}
 	
@@ -63,10 +71,10 @@ public class Action {
 		try {
 		   wait.performExplicitWait(waitStrategy, by);
 		   WebElement element = wait.performExplicitWait(waitStrategy, by);
-		   Listener.extentTest.get().log(Status.INFO,"<b>"+ elementName + "</b> is displayed successfully");
+		   ExtentLogger.info("<b>"+ elementName + "</b> is displayed successfully");
 		   return element.isDisplayed();
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>" );
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 			return false;
 		}
 	}
@@ -78,12 +86,12 @@ public class Action {
 				driver.switchTo().window(handle);
 				if(driver.getTitle().matches(pageTitle)) {
 					String logText = FrameWorkConstants.ICON_NAVIGATE_RIGHT+ "Navigating to : <b>" + pageTitle +"</b>";
-					Listener.extentTest.get().log(Status.INFO,logText);
+					ExtentLogger.info(logText);
 					return;
 				}
 			}
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>");
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>");
 		}
 	}
 	
@@ -97,11 +105,11 @@ public class Action {
 					 String title = driver.switchTo().window(window).getTitle(); // Get title before switching
 		                windowTitles.put(window, title);
 		                driver.switchTo().window(window).close();
-					Listener.extentTest.get().log(Status.INFO,"<b>"+ windowTitles.get(window) + "</b> has been closed");
+		                ExtentLogger.info("<b>"+ windowTitles.get(window) + "</b> has been closed");
 				}
 			}
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>");
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>");
 		} finally {
 			driver.switchTo().window(currentWindow);
 		}
@@ -114,9 +122,9 @@ public class Action {
 			Set<String> windows = driver.getWindowHandles();
 			return windows.size();
 		} catch(InterruptedException e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>");
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>");
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>" );
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 		}
 		return 0;
 	}
@@ -132,9 +140,9 @@ public class Action {
 			}
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
-			Listener.extentTest.get().log(Status.WARNING, "<b><i>" + message(e.getMessage()) + "</i></b>" );
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 		}	catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING, "<b><i>" + message(e.getMessage()) + "</i></b>" );
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 		}
 		return titles;
 	}
@@ -149,21 +157,21 @@ public class Action {
 					driver.switchTo().window(window);
 					String title = driver.switchTo().window(window).getTitle();
 					String logText = FrameWorkConstants.ICON_NAVIGATE_RIGHT+ "Navigating to : <b>" + title +"</b>";
-					Listener.extentTest.get().log(Status.INFO,logText);
+					ExtentLogger.info(logText);
 					try {
 						Alert alert = driver.switchTo().alert();
 						String alertMessage = alert.getText();
-						Listener.extentTest.get().log(Status.INFO,"Alert is displayed with the message: "+alertMessage);
+						ExtentLogger.info("Alert is displayed with the message: "+alertMessage);
 						alert.accept();
 					} catch(NoAlertPresentException e) { 
-						Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>" );
+						ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>" );
 				    }catch(Exception e) {
-				    	Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>");
+				    	ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>");
 					}
 				}
 			}
 		} catch(Exception e) {
-			Listener.extentTest.get().log(Status.WARNING,"<b><i>" + message(e.getMessage()) + "</i></b>");
+			ExtentLogger.warning("<b><i>" + message(e.getMessage()) + "</i></b>");
 		}
 	}
 	
@@ -172,5 +180,11 @@ public class Action {
 				+ FrameWorkConstants.ICON_WARNING + " </font></b>" + "</summary>" + message.replaceAll(",", "<br>")
 				+ "</details> \n";
 		 return error;
+	}
+	
+	public String getText(By by,WaitStrategy waitStrategy) {
+		WebElement element = wait.performExplicitWait(waitStrategy,by);
+		ExtentLogger.info("<b>"+ element.getText() + "</b> is displayed on the element");
+		return element.getText();
 	}
 }
